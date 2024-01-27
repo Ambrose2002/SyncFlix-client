@@ -22,7 +22,7 @@ const UploadForm = ({ onClose }) => {
         const token = localStorage.getItem('token');
 
         try {
-            const response = await fetch('/upload', {
+            const response = await fetch('https://desolate-bayou-93955-64c6896ee0b5.herokuapp.com/api/upload', {
                 method: 'POST',
                 body: formData,
                 headers: {

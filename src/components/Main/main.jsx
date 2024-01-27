@@ -11,7 +11,7 @@ const Main = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const url = "https://desolate-bayou-93955-64c6896ee0b5.herokuapp.com/";
+			const url = "https://desolate-bayou-93955-64c6896ee0b5.herokuapp.com/api";
 			const token = localStorage.getItem('token');
 
 			try {
