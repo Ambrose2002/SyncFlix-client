@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "proxy": "https://desolate-bayou-93955-64c6896ee0b5.herokuapp.com/",
   "dependencies": {
     "@clerk/clerk-react": "^4.30.3",
