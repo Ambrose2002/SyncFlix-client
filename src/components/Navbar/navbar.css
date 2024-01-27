@@ -1,0 +1,35 @@
+.navbar {
+    background-color: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    height: 50px;
+}
+
+.navbar.user{
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.navbar-right{
+    display: flex;
+    gap: 30px;
+}
+
+@media screen and (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar.user{
+        margin: 5px 0;
+    }
+
+    .navbar-left {
+        margin-bottom: 5px;
+    }
+}
