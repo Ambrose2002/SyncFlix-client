@@ -21,7 +21,7 @@ const Navbar = (prop) => {
     return (
         <div className="navbar">
             <div className="navbar-left">
-                <p className='title'>WeStream</p>
+                <p className='title'>SyncFlix</p>
             </div>
             <div className="navbar-right">
                 <p className='user' >{name}</p>

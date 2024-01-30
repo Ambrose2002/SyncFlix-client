@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Navbar from "../Navbar/navbar";
 
 import React from 'react';
-import VideoPlayer from '../VideoPlayer/videoPlayer';
+// import VideoPlayer from '../VideoPlayer/videoPlayer';
+import VideoCard from '../VideoCard/videoCard';
 
 const Main = () => {
 	const handleLogout = () => {
@@ -10,9 +11,9 @@ const Main = () => {
 		window.location.reload();
 	};
 
-	const videoId = '65b58c038b81dd75d4e861ce';
-
 	const [userData, setUserData] = useState(null);
+
+	const [uploadedVideos, setUploadedVideos] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -28,9 +29,9 @@ const Main = () => {
 
 				if (response.ok) {
 					const data = await response.json();
-					// console.log(data)
 					setUserData(data.firstName);
-					// console.log(data)
+					setUploadedVideos(data.videos)
+
 				} else {
 					// Handle unauthorized or other errors
 					console.error('Error fetching user data:', response.statusText);
@@ -40,32 +41,24 @@ const Main = () => {
 			}
 		}
 		fetchData();
-	}, [])
+	}, [uploadedVideos])
 
 
 	return (
 		<div>
 			<Navbar prop={{ userData, handleLogout }} />
-			<nav>
-				<button onClick={handleLogout}>
-					Logout
-				</button>
-			</nav>
-
-			<div>
-				{userData ? (
-					<div>
-						<p>Name:{JSON.stringify(userData)}</p>
-					</div>
-				) : (
-					<p>Loading user data...</p>
-				)}
-			</div>
-
-			<div>
+			{/* <div>
 				<h1>Video Player</h1>
 				<VideoPlayer videoId={videoId} />
+			</div> */}
+
+			<div className="cards_container">
+				{uploadedVideos.length !== 0 ? uploadedVideos.map((video) => (
+					<VideoCard key={video.filename} title={video.title} filename={video.filename} />
+				)): <h1>No videos uploaded</h1>}
 			</div>
+
+
 		</div>
 
 
