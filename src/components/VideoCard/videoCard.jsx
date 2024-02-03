@@ -1,7 +1,10 @@
 import React from 'react';
 import './videoCard.css';
+import { useNavigate } from 'react-router-dom';
 
 const VideoCard = ({ title, filename, videoId }) => {
+
+    const navigate = useNavigate()
     
     const handleDelete = async () => {
         const token = localStorage.getItem('token');
@@ -21,6 +24,12 @@ const VideoCard = ({ title, filename, videoId }) => {
         }
     }
 
+    const handlePlay = async () => {
+
+        navigate(`/video/${videoId}`)
+        
+    }
+
     return (
         <div className="video-card">
             {/* <div className="video-thumbnail">
@@ -30,7 +39,7 @@ const VideoCard = ({ title, filename, videoId }) => {
                 <h3 className="video-title">{title}</h3>
             </div>
             <div className="play">
-                <button className='card_button'>Play Video</button>
+                <button className='card_button' onClick={handlePlay}>Play Video</button>
             </div>
             <div className="delete">
                 <button className='card_button' onClick={handleDelete}>Delete</button>

@@ -1,9 +1,11 @@
+import { useParams } from "react-router-dom";
 
-const VideoPlayer = ({ videoId }) => {
-
+const VideoPlayer = ( ) => {
+	var videoId = useParams()
+	videoId = videoId.videoId
 	return (
-		<video id="videoPlayer" width="650" controls muted="muted" autoplay>
-			<source src="api/video" type="video/mp4" />
+		<video id="videoPlayer" controls>
+			<source src= {`/api/video/${videoId}`} type="video/mp4" />
 		</video>
 	);
 };

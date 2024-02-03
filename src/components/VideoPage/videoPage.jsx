@@ -1,20 +1,17 @@
 import { useEffect, useState } from "react";
 import Navbar from "../Navbar/navbar";
-import {useNavigate} from "react-router-dom";
-import './main.css'
+import { useNavigate } from "react-router-dom";
+import VideoPlayer from '../VideoPlayer/videoPlayer';
+import './videoPage.css';
 
-import React from 'react';
-import VideoCard from '../VideoCard/videoCard';
+const VideoPage = ({ videoId, title }) => {
 
-const Main = () => {
 	const handleLogout = () => {
 		localStorage.removeItem("token");
 		window.location.reload();
 	};
 
 	const [userData, setUserData] = useState(null);
-
-	const [uploadedVideos, setUploadedVideos] = useState([]);
 
 	const navigate = useNavigate();
 
@@ -33,7 +30,6 @@ const Main = () => {
 				if (response.ok) {
 					const data = await response.json();
 					setUserData(data.firstName);
-					setUploadedVideos(data.videos)
 
 				} else {
 					// Handle unauthorized or other errors
@@ -46,24 +42,26 @@ const Main = () => {
 			}
 		}
 		fetchData();
-	}, [uploadedVideos])
-
+	}, [])
 
 	return (
 		<>
 			<Navbar prop={{ userData, handleLogout }} />
-
-			<div className="cards_container">
-				{uploadedVideos.length !== 0 ? uploadedVideos.map((video) => (
-					<VideoCard key={video.filename} title={video.title} filename={video.filename} videoId = {video.videoId}/>
-				)): <h1>No videos uploaded</h1>}
+			<div className="sub_nav">
+				<div onClick={() => navigate('/')} className="back">
+					<i className='bx bx-arrow-back back_arrow'></i>
+					<button className='card_button'>Back</button>
+				</div>
+				<div>
+					<button>Create Room</button>
+				</div>
 			</div>
 
-
+			<div>
+				<VideoPlayer videoId={videoId} title={title} />
+			</div>
 		</>
+	)
+}
 
-
-	);
-};
-
-export default Main;
+export default VideoPage
