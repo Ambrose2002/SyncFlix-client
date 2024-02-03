@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
-  "proxy": "http://localhost:3001/",
+  "proxy": "https://desolate-bayou-93955-64c6896ee0b5.herokuapp.com",
   "dependencies": {
     "@clerk/clerk-react": "^4.30.3",
     "@testing-library/jest-dom": "^5.17.0",

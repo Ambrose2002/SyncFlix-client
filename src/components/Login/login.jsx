@@ -15,7 +15,7 @@ const Login = () => {
         e.preventDefault();
         try {
             const url = '/api/auth/signin';
-            const res = await fetch(url, {
+            const res = await fetch('/api/auth/signin', {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
