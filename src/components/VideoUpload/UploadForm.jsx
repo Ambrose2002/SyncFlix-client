@@ -21,8 +21,10 @@ const UploadForm = ({ onClose }) => {
         formData.append('video', videoFile);
         const token = localStorage.getItem('token');
 
+        const url = "https://desolate-bayou-93955-64c6896ee0b5.herokuapp.com/api/upload"
+
         try {
-            const response = await fetch('/api/upload', {
+            const response = await fetch(url, {
                 method: 'POST',
                 body: formData,
                 headers: {

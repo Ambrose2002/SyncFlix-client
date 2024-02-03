@@ -19,7 +19,7 @@ const Signup = () => {
         console.log(JSON.stringify(data))
         e.preventDefault();
         try {
-            const url = "/api/auth/signup";
+            const url = "https://desolate-bayou-93955-64c6896ee0b5.herokuapp.com/api/auth/signup";
             const res = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify(data),

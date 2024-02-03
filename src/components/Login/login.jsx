@@ -14,8 +14,8 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = '/api/auth/signin';
-            const res = await fetch('/api/auth/signin', {
+            const url = 'https://desolate-bayou-93955-64c6896ee0b5.herokuapp.com/api/auth/signin';
+            const res = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {

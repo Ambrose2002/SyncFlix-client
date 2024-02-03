@@ -9,7 +9,8 @@ const VideoCard = ({ title, filename, videoId }) => {
     const handleDelete = async () => {
         const token = localStorage.getItem('token');
         console.log(videoId)
-        const response = await fetch(`/api/video/${videoId}`, {
+        const url = `https://desolate-bayou-93955-64c6896ee0b5.herokuapp.com/api/video/${videoId}`
+        const response = await fetch(url, {
             method: 'DELETE',
             headers: {
                 Authorization: token,

@@ -5,7 +5,7 @@ const VideoPlayer = ( ) => {
 	videoId = videoId.videoId
 	return (
 		<video id="videoPlayer" controls>
-			<source src= {`/api/video/${videoId}`} type="video/mp4" />
+			<source src= {`https://desolate-bayou-93955-64c6896ee0b5.herokuapp.com/api/video/${videoId}`} type="video/mp4" />
 		</video>
 	);
 };
