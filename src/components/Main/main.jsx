@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../Navbar/navbar";
+import {useNavigate} from "react-router-dom";
+import './main.css'
 
 import React from 'react';
 // import VideoPlayer from '../VideoPlayer/videoPlayer';
@@ -14,6 +16,8 @@ const Main = () => {
 	const [userData, setUserData] = useState(null);
 
 	const [uploadedVideos, setUploadedVideos] = useState([]);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -35,6 +39,8 @@ const Main = () => {
 				} else {
 					// Handle unauthorized or other errors
 					console.error('Error fetching user data:', response.statusText);
+					navigate('/login')
+
 				}
 			} catch (error) {
 				console.error('Try failed', error);
@@ -45,7 +51,7 @@ const Main = () => {
 
 
 	return (
-		<div>
+		<>
 			<Navbar prop={{ userData, handleLogout }} />
 			{/* <div>
 				<h1>Video Player</h1>
@@ -54,12 +60,12 @@ const Main = () => {
 
 			<div className="cards_container">
 				{uploadedVideos.length !== 0 ? uploadedVideos.map((video) => (
-					<VideoCard key={video.filename} title={video.title} filename={video.filename} />
+					<VideoCard key={video.filename} title={video.title} filename={video.filename} videoId = {video.videoId}/>
 				)): <h1>No videos uploaded</h1>}
 			</div>
 
 
-		</div>
+		</>
 
 
 	);
