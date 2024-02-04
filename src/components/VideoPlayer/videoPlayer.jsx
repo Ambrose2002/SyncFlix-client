@@ -75,7 +75,7 @@ const VideoPlayer = () => {
 			<button id="playButton" onClick={playVideo}>Play Video</button>
 			<ReactPlayer
 				// ref={playerRef}
-				url={`/api/video/${videoId}`}
+				url={`https://sync-flix-fd6d21fb8933.herokuapp.com/api/video/${videoId}`}
 				playing={isPlaying}
 				controls={true}
 				width="70%"
