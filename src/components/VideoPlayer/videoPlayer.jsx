@@ -65,24 +65,56 @@ const VideoPlayer = () => {
 
 	};
 
-	
+	const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+	const playerConfig = {
+		file: {
+			attributes: {
+				preload: 'auto', // 'auto' will enable buffering
+			},
+		},
+	};
+
+
 
 	return (
 		// <video id="videoPlayer" controls>
 		// 	<source src= {`/api/video/${videoId}`} type="video/mp4" />
 		// </video>
 		<>
-			<button id="playButton" onClick={playVideo}>Play Video</button>
-			<ReactPlayer
+			<button id="playButton" onClick={playVideo}>{isPlaying ? "Pause Video" : "Play Video"}</button>
+			{/* <ReactPlayer
 				// ref={playerRef}
 				url={`/api/video/${videoId}`}
 				playing={isPlaying}
 				controls={true}
 				width="70%"
 				height="auto"
+				start={3000}
 			// muted
 			// style={{ display: 'none' }}
-			/>
+			/> */}
+
+
+
+			{isSafari ? (
+				<video loop autoPlay width="70%" height="auto" start={30} playing={isPlaying} controls={true}>
+					<source src={`/api/video/${videoId}`} type="video/mp4" />
+					{/* Your browser does not support the video tag. */}
+				</video>
+			) : (
+				<ReactPlayer
+					url={`/api/video/${videoId}`}
+					playing={isPlaying}
+					controls={true}
+					width="70%"
+					height="auto"
+					start={3000}
+					config={playerConfig}
+				/>
+			)}
+
+
 		</>
 
 	);
