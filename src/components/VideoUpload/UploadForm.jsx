@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './uploadForm.css';
+import { useNavigate } from 'react-router-dom';
 
 const UploadForm = ({ onClose }) => {
     const [videoTitle, setVideoTitle] = useState('');
     const [videoFile, setVideoFile] = useState(null);
+
+    const navigate = useNavigate()
 
     const handleTitleChange = (e) => {
         setVideoTitle(e.target.value);
@@ -34,6 +37,8 @@ const UploadForm = ({ onClose }) => {
             if (response.ok) {
                 const res = await response.json();
                 console.log(res)
+                navigate("/")
+                
             } else {
                 const res = await response.json();
                 alert(res.message);
@@ -48,6 +53,7 @@ const UploadForm = ({ onClose }) => {
 
         // Close the modal
         onClose();
+
     };
 
     return (

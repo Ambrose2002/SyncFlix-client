@@ -19,7 +19,7 @@ const VideoCard = ({ title, filename, videoId }) => {
 
         if (response.ok) {
             console.log('Video deleted');
-            window.location.reload();
+            navigate("/")
         } else {
             console.error('Error deleting video:', response.statusText);
         }
