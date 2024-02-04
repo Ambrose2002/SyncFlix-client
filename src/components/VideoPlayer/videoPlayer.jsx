@@ -65,7 +65,7 @@ const VideoPlayer = () => {
 
 	};
 
-	
+
 
 	return (
 		// <video id="videoPlayer" controls>
@@ -83,6 +83,9 @@ const VideoPlayer = () => {
 			// muted
 			// style={{ display: 'none' }}
 			/>
+			<video id="videoPlayer" controls>
+				<source src={`https://sync-flix-fd6d21fb8933.herokuapp.com/api/video/${videoId}`} type="video/mp4" />
+			</video>
 		</>
 
 	);
