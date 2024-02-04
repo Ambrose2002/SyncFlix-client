@@ -54,24 +54,37 @@
 
 import { useParams } from "react-router-dom";
 import ReactPlayer from 'react-player'
+import { useState } from "react";
 
-const VideoPlayer = ( ) => {
-	var videoId = useParams()
-	videoId = videoId.videoId
+const VideoPlayer = () => {
+	var { videoId } = useParams()
+	const [isPlaying, setIsPlaying] = useState(false);
+
+	const playVideo = () => {
+		setIsPlaying(!isPlaying);
+
+	};
+
+	
+
 	return (
 		// <video id="videoPlayer" controls>
 		// 	<source src= {`/api/video/${videoId}`} type="video/mp4" />
 		// </video>
-		<ReactPlayer
+		<>
+			<button id="playButton" onClick={playVideo}>Play Video</button>
+			<ReactPlayer
 				// ref={playerRef}
 				url={`/api/video/${videoId}`}
-				// playing={isPlaying}
+				playing={isPlaying}
 				controls={true}
-				// width="100%"
-				// height="auto"
-				// muted
-				// style={{ display: 'none' }}
+				width="70%"
+				height="auto"
+			// muted
+			// style={{ display: 'none' }}
 			/>
+		</>
+
 	);
 };
 
