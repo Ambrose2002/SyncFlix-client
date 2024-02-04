@@ -72,7 +72,7 @@ const VideoPlayer = () => {
 		// 	<source src= {`/api/video/${videoId}`} type="video/mp4" />
 		// </video>
 		<>
-			{/* <button id="playButton" onClick={playVideo}>Play Video</button>
+			<button id="playButton" onClick={playVideo}>Play Video</button>
 			<ReactPlayer
 				// ref={playerRef}
 				url={`https://sync-flix-fd6d21fb8933.herokuapp.com/api/video/${videoId}`}
@@ -82,10 +82,10 @@ const VideoPlayer = () => {
 				height="auto"
 			// muted
 			// style={{ display: 'none' }}
-			/> */}
-			<video id="videoPlayer" controls>
+			/>
+			{/* <video id="videoPlayer" controls>
 				<source src={`https://sync-flix-fd6d21fb8933.herokuapp.com/api/video/${videoId}`} type="video/mp4" />
-			</video>
+			</video> */}
 		</>
 
 	);
