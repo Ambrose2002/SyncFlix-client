@@ -81,6 +81,7 @@ const VideoPlayer = () => {
 				width="70%"
 				height="auto"
 				muted
+				start={360}
 			// style={{ display: 'none' }}
 			/>
 			{/* <video id="videoPlayer" controls>
