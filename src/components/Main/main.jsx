@@ -46,7 +46,7 @@ const Main = () => {
 			}
 		}
 		fetchData();
-	}, [])
+	}, [uploadedVideos])
 
 
 	return (
@@ -58,7 +58,6 @@ const Main = () => {
 					<VideoCard key={video.filename} title={video.title} filename={video.filename} videoId = {video.videoId}/>
 				)): <h1>No videos uploaded</h1>}
 			</div>
-
 
 		</>
 

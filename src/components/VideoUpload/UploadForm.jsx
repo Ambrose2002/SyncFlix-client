@@ -37,7 +37,7 @@ const UploadForm = ({ onClose }) => {
             if (response.ok) {
                 const res = await response.json();
                 console.log(res)
-                navigate("/")
+                window.location.reload();
                 
             } else {
                 const res = await response.json();
