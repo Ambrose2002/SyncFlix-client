@@ -80,7 +80,7 @@ const VideoPlayer = () => {
 				controls={true}
 				width="70%"
 				height="auto"
-			// muted
+				muted
 			// style={{ display: 'none' }}
 			/>
 			{/* <video id="videoPlayer" controls>
@@ -92,4 +92,22 @@ const VideoPlayer = () => {
 };
 
 export default VideoPlayer;
+
+// import { useParams } from "react-router-dom";
+// import ReactPlayer from 'react-player'
+
+// import { useParams } from "react-router-dom";
+
+// const VideoPlayer = ( ) => {
+// 	var videoId = useParams()
+// 	videoId = videoId.videoId
+// 	return (
+// 		<video id="videoPlayer" controls>
+// 			<source src= {`/api/video/${videoId}`} type="video/mp4" />
+// 		</video>
+// 	);
+// };
+
+// export default VideoPlayer;
+
 
