@@ -19,6 +19,16 @@
     gap: 30px;
 }
 
+.join_button{
+    margin-left: 10px;
+}
+
+.join_input{
+    border-radius: 2px;
+    color: black;
+    width: 250px;
+}
+
 @media screen and (max-width: 600px) {
     .navbar {
         flex-direction: column;

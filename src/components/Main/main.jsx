@@ -16,6 +16,8 @@ const Main = () => {
 
 	const [uploadedVideos, setUploadedVideos] = useState([]);
 
+	const [userId, setUserId] = useState(null);
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -34,6 +36,7 @@ const Main = () => {
 					const data = await response.json();
 					setUserData(data.firstName);
 					setUploadedVideos(data.videos)
+					setUserId(data._id);
 
 				} else {
 					// Handle unauthorized or other errors
@@ -46,12 +49,12 @@ const Main = () => {
 			}
 		}
 		fetchData();
-	}, [uploadedVideos])
+	}, [])
 
 
 	return (
 		<>
-			<Navbar prop={{ userData, handleLogout }} />
+			<Navbar prop={{ userData, userId, handleLogout }} />
 
 			<div className="cards_container">
 				{uploadedVideos.length !== 0 ? uploadedVideos.map((video) => (
