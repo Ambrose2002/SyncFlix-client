@@ -33,7 +33,7 @@ const RoomChat = ({ roomId, socket }) => {
 			<div className="chat-messages">
 				{messages.map((msg, index) => (
 					<div key={index} className="message">
-						<span className="user">{msg.user}:</span> {msg.message}
+						<span className="room_user">{msg.user}:</span> {msg.message}
 					</div>
 				))}
 			</div>
