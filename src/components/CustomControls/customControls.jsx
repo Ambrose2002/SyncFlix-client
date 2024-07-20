@@ -1,14 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './customControls.css';
 
-const CustomVideoControls = ({ videoSource, roomId, socket }) => {
+const CustomVideoControls = ({ videoSource, roomId, socket, initialTime }) => {
     const videoRef = useRef(null);
     const [isPlaying, setPlaying] = useState(false);
-    const [currentTime, setCurrentTime] = useState(0);
+    const [currentTime, setCurrentTime] = useState(initialTime);
     const [duration, setDuration] = useState(0);
 
     useEffect(() => {
         const video = videoRef.current;
+
+        // Set initial playback time
+        if (video) {
+            video.currentTime = initialTime;
+        }
 
         // Set up event listeners
         video.addEventListener('play', handlePlay);
@@ -31,9 +36,9 @@ const CustomVideoControls = ({ videoSource, roomId, socket }) => {
             videoRef.current.currentTime = time;
         });
 
-        socket.on('current-time', (time) => {
-            setCurrentTime(time);
-            videoRef.current.currentTime = time;
+        socket.on('syncTime', ({ currentTime }) => {
+            setCurrentTime(currentTime);
+            videoRef.current.currentTime = currentTime;
         });
 
 
@@ -45,7 +50,7 @@ const CustomVideoControls = ({ videoSource, roomId, socket }) => {
             video.removeEventListener('timeupdate', handleTimeUpdate);
             video.removeEventListener('loadedmetadata', handleLoadedMetadata);
         };
-    }, [roomId]);
+    }, [roomId, initialTime]);
 
     const handlePlay = () => {
         if (videoRef.current) setPlaying(true);
@@ -56,7 +61,11 @@ const CustomVideoControls = ({ videoSource, roomId, socket }) => {
     };
 
     const handleTimeUpdate = () => {
-        if (videoRef.current) setCurrentTime(videoRef.current.currentTime);
+        if (videoRef.current) {
+            const newTime = videoRef.current.currentTime;
+            setCurrentTime(newTime);
+            socket.emit('updateTime', { roomId: roomId, currentTime: newTime });
+        };
     };
 
     const handleLoadedMetadata = () => {
@@ -86,11 +95,15 @@ const CustomVideoControls = ({ videoSource, roomId, socket }) => {
     };
 
     useEffect(() => {
-        // Send the current playback time to the server when the component updates
-        if (videoRef.current) {
-            socket.emit('current-time', videoRef.current.currentTime);
-        }
-    }, [currentTime]);
+        // Send the current playback time to the server periodically
+        const interval = setInterval(() => {
+            if (videoRef.current & isPlaying) {
+                socket.emit('updateTime', { roomId, currentTime: videoRef.current.currentTime });
+            }
+        }, 5000); // Update every 5 seconds
+
+        return () => clearInterval(interval);
+    }, [currentTime, roomId]);
 
 
     return (
