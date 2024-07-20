@@ -98,7 +98,7 @@ const VideoPlayer = () => {
 
 
 			{isSafari ? (
-				<video loop autoPlay width="70%" height="auto" start={30} playing={isPlaying} controls={true}>
+				<video width="70%" height="auto" start={30} playing={isPlaying} controls={true}>
 					<source src={`/api/video/${videoId}`} type="video/mp4" />
 					{/* Your browser does not support the video tag. */}
 				</video>

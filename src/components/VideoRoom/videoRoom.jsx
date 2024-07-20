@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import CustomVideoControls from '../CustomControls/customControls';
 import RoomChat from '../RoomChat/roomChat';
 import "./videoRoom.css";
@@ -11,7 +11,8 @@ const socket = io("http://localhost:3001");
 
 const VideoRoom = () => {
 	const { videoId, roomId } = useParams();
-	console.log(useParams())
+	const userName = sessionStorage.getItem('firstName')
+	const navigate = useNavigate(roomId);
 
 	useEffect(() => {
         socket.emit('joinRoom', roomId);
@@ -30,7 +31,7 @@ const VideoRoom = () => {
 				<CustomVideoControls videoSource={`/api/video/${videoId}`} roomId={roomId} socket={socket}/>
 			</div>
 			<div className="room_chat">
-				<RoomChat roomId={roomId} socket={socket}/>
+				<RoomChat roomId={roomId} socket={socket} userName={userName}/>
 			</div>
 		</div>
 	);

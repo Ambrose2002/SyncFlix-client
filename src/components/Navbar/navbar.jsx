@@ -80,11 +80,14 @@ const Navbar = (prop) => {
                     <input type="text" placeholder="Enter room ID" value={roomId} className='join_input' onChange={handleRoomChange} />
                     <button className='join_button'>Join</button>
                 </form>
-                <p className='user' >{name}</p>
+                
                 <button onClick={openModal}>Upload Video</button>
                 <button className="logout_button user" onClick={handleLogout}>
                     Logout
                 </button>
+                <div className="user_name">
+                    {name}
+                </div>
             </div>
             {isModalOpen && <UploadForm onClose={closeModal} />}
         </div>

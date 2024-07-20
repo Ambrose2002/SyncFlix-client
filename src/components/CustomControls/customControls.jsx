@@ -31,7 +31,7 @@ const CustomVideoControls = ({ videoSource, roomId, socket }) => {
             videoRef.current.currentTime = time;
         });
 
-        socket.on('current-time', async (time) => {
+        socket.on('current-time', (time) => {
             setCurrentTime(time);
             videoRef.current.currentTime = time;
         });
@@ -40,12 +40,10 @@ const CustomVideoControls = ({ videoSource, roomId, socket }) => {
 
         // Clean up event listeners on component unmount
         return () => {
-            console.log("cleaning up")
             video.removeEventListener('play', handlePlay);
             video.removeEventListener('pause', handlePause);
             video.removeEventListener('timeupdate', handleTimeUpdate);
             video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-            // socket.disconnect();
         };
     }, [roomId]);
 

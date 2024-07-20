@@ -35,6 +35,7 @@ const Main = () => {
 				if (response.ok) {
 					const data = await response.json();
 					setUserData(data.firstName);
+					sessionStorage.setItem('firstName', data.firstName);
 					setUploadedVideos(data.videos)
 					setUserId(data._id);
 
